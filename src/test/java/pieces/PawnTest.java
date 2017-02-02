@@ -1,4 +1,7 @@
+package pieces;
+
 import junit.framework.TestCase;
+import pieces.Pawn;
 
 /**
  * Created by Administrator on 2017-02-01.
