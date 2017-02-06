@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 /**
  * Created by Administrator on 2017-02-01.

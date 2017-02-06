@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 import junit.framework.TestCase;
 
@@ -12,21 +12,12 @@ public class CourseSessionTest extends TestCase {
     private CourseSession session;
     private Date startDate;
 
-    public void setUp(){
-        startDate = createDate(2003, 1,6);
+    public void setUp() {
+        startDate = new DateUtil().createDate(2003, 1, 6);
         session = new CourseSession("ENGL", "101", startDate);
     }
 
-    Date createDate(int year, int month, int date){
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.clear();
-        calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, date);
-        return calendar.getTime();
-    }
-
-    public void testCreate(){
+    public void testCreate() {
         assertEquals("ENGL", session.getDepartment());
         assertEquals("101", session.getNumber());
         assertEquals(0, session.getNumberOfStudents());
@@ -45,8 +36,8 @@ public class CourseSessionTest extends TestCase {
         assertEquals(student2, session.get(1));
     }
 
-    public void testCourseDates(){
-        Date sixteenWeeksOut = createDate(2003, 4, 25);
+    public void testCourseDates() {
+        Date sixteenWeeksOut = new DateUtil().createDate(2003, 4, 25);
         assertEquals(sixteenWeeksOut, session.getEndDate());
     }
 }

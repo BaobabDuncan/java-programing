@@ -1,4 +1,4 @@
-package studentinfo;
+package sis.studentinfo;
 
 import java.util.*;
 
@@ -50,5 +50,9 @@ public class CourseSession {
 
     public Date getStartDate() {
         return startDate;
+    }
+
+    public ArrayList<Student> getAllStudents() {
+        return students;
     }
 }
