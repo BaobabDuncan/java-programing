@@ -11,6 +11,21 @@ public class Board {
 
     private ArrayList<Pawn> pawns = new ArrayList<Pawn>();
 
+    public void Board(){
+//        ArrayList<Pawn> WhitePawns = new ArrayList<Pawn>();
+//        ArrayList<Pawn> BlackPawns = new ArrayList<Pawn>();
+//
+//        for (int i = 0 ; i < 8; i++){
+//            Pawn pawn = new Pawn(Pawn.white);
+//            WhitePawns.add(pawn);
+//        }
+//        for (int i = 0 ; i < 8; i++){
+//            Pawn pawn = new Pawn(Pawn.black);
+//            BlackPawns.add(pawn);
+//        }
+
+    }
+
     public int getNumberOfPawns() {
         return pawns.size();
     }
