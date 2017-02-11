@@ -4,14 +4,14 @@ import junit.framework.TestCase;
 import sis.studentinfo.CourseSession;
 import sis.studentinfo.DateUtil;
 import sis.studentinfo.Student;
+import static sis.report.ReportConstant.NEWLINE;
 
 /**
  * Created by Administrator on 2017-02-02.
  */
 public class RosterReporterTest extends TestCase {
     public void testRosterReport() {
-        CourseSession session = new CourseSession("ENGL", "101", new DateUtil().createDate(2003, 1, 6));
-
+        CourseSession session = CourseSession.create("ENGL", "101", DateUtil.createDate(2003, 1, 6));
         session.enroll(new Student("A"));
         session.enroll(new Student("B"));
 
@@ -19,10 +19,10 @@ public class RosterReporterTest extends TestCase {
 
         assertEquals(
                 RosterReporter.ROSTER_REPORT_HEADER +
-                        "A" + RosterReporter.NEWLINE +
-                        "B" + RosterReporter.NEWLINE +
+                        "A" + NEWLINE +
+                        "B" + NEWLINE +
                         RosterReporter.ROSTER_REPORT_FOOTER +
-                        "2" + RosterReporter.NEWLINE, rosterReport
+                        "2" + NEWLINE, rosterReport
         );
     }
 }

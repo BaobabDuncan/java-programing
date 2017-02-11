@@ -11,10 +11,17 @@ public class CourseSessionTest extends TestCase {
 
     private CourseSession session;
     private Date startDate;
+    private static final int CREDITS = 3;
+
+    private CourseSession createCourseSession(){
+        CourseSession session = CourseSession.create("ENGL", "101", startDate);
+        session.setNumberOfCredits(CREDITS);
+        return session;
+    }
 
     public void setUp() {
-        startDate = new DateUtil().createDate(2003, 1, 6);
-        session = new CourseSession("ENGL", "101", startDate);
+        startDate = DateUtil.createDate(2003, 1, 6);
+        session = createCourseSession();
     }
 
     public void testCreate() {
@@ -27,17 +34,19 @@ public class CourseSessionTest extends TestCase {
     public void testEnrollStudents() {
         Student student1 = new Student("Cain Divoe");
         session.enroll(student1);
+        assertEquals(CREDITS, student1.getCredits());
         assertEquals(1, session.getNumberOfStudents());
         assertEquals(student1, session.get(0));
 
         Student student2 = new Student("Cain Divoe");
         session.enroll(student2);
+        assertEquals(CREDITS, student2.getCredits());
         assertEquals(2, session.getNumberOfStudents());
         assertEquals(student2, session.get(1));
     }
 
     public void testCourseDates() {
-        Date sixteenWeeksOut = new DateUtil().createDate(2003, 4, 25);
+        Date sixteenWeeksOut = DateUtil.createDate(2003, 4, 25);
         assertEquals(sixteenWeeksOut, session.getEndDate());
     }
 }
