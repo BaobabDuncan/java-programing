@@ -1,7 +1,7 @@
 package chess;
 
 import junit.framework.TestCase;
-import pieces.Pawn;
+import static util.StringUtil.NEWLINE;
 
 /**
  * Created by Administrator on 2017-02-02.
@@ -9,22 +9,35 @@ import pieces.Pawn;
 public class BoardTest extends TestCase {
     private Board board;
 
-    public void setUp(){
+    public void setUp() {
         board = new Board();
     }
-    public void testCreate(){
-        assertEquals(0, board.getNumberOfPawns());
+
+    public void testNumberOfPieces() {
+        assertEquals(32, board.getNumberOfPieces());
+        assertEquals(16, board.getNumberOfWhitePieces());
+        assertEquals(16, board.getNumberOfBlackPieces());
     }
 
-    public void testEnrollPawn(){
-        Pawn whitePawn = new Pawn(Pawn.white);
-        board.enroll(whitePawn);
-        assertEquals(1, board.getNumberOfPawns());
-        assertEquals(whitePawn, board.get(0));
-
-        Pawn blackPawn = new Pawn(Pawn.black);
-        board.enroll(blackPawn);
-        assertEquals(2, board.getNumberOfPawns());
-        assertEquals(blackPawn, board.get(1));
+    public void testRanks() {
+        assertEquals("PPPPPPPP", board.getRank(2));
+        assertEquals("pppppppp", board.getRank(7));
+        assertEquals("rnbqkbnr", board.getRank(8));
     }
+
+    public void testFullBoard() {
+        assertEquals(
+                "rnbqkbnr" + NEWLINE +
+                "pppppppp" + NEWLINE +
+                "........" + NEWLINE +
+                "........" + NEWLINE +
+                "........" + NEWLINE +
+                "........" + NEWLINE +
+                "PPPPPPPP" + NEWLINE +
+                "RNBQKBNR" + NEWLINE
+                ,
+                board.print()
+        );
+    }
+
 }
