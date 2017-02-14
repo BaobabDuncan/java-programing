@@ -1,12 +1,21 @@
 package sis.studentinfo;
 
+import java.util.ArrayList;
+
 /**
  * Created by Administrator on 2017-02-01.
  */
 public class Student {
     static final String IN_STATE = "CO";
     static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
+    private GradingStrategy gradingStrategy = new RegularGradingStrategy();
 
+    public void setGradingStrategy(GradingStrategy gradingStrategy) {
+        this.gradingStrategy = gradingStrategy;
+    }
+
+    enum Grade {A, B, C, D, F}
+    private ArrayList<Grade> grades = new ArrayList<Grade>();
     private String name;
     private int credits;
     private String state;
@@ -39,5 +48,21 @@ public class Student {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public double getGpa() {
+        if (grades.isEmpty()){
+            return 0.0;
+        }
+        double total = 0.0;
+        for (Grade grade: grades){
+            total += gradingStrategy.getGradePointsFor(grade);
+
+        }
+        return total / grades.size();
+    }
+
+    public void addGrade(Grade grade) {
+        grades.add(grade);
     }
 }

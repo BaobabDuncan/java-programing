@@ -5,11 +5,11 @@ import java.util.*;
 /**
  * Created by Administrator on 2017-02-01.
  */
-public class CourseSession {
+public class CourseSession implements Comparable<CourseSession> {
     private Date startDate;
     private String department;
     private String number;
-    private ArrayList<Student> students = new ArrayList<Student>();
+    private List<Student> students = new ArrayList<Student>();
     private int numberOfCredits;
 
     private CourseSession(String department, String number, Date startDate) {
@@ -58,11 +58,19 @@ public class CourseSession {
         return startDate;
     }
 
-    public ArrayList<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         return students;
     }
 
     public void setNumberOfCredits(int numberOfCredits) {
         this.numberOfCredits = numberOfCredits;
+    }
+
+    public int compareTo(CourseSession that) {
+        int compare = this.getDepartment().compareTo(that.getDepartment());
+        if (compare == 0){
+            compare = this.getNumber().compareTo(that.getNumber());
+        }
+        return compare;
     }
 }
