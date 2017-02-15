@@ -17,35 +17,35 @@ public class Board {
     }
 
     public void initialize() {
-        Piece.resetCount();
-
-        for (int i=0; i < 8; i++){
-            pieces.add(new ArrayList<Piece>());
-        }
-        pieces.set(0, createQueenRank(Piece.COLOR_WHITE));
-        pieces.set(1, createPawnRank(Piece.COLOR_WHITE));
-        pieces.set(6, createPawnRank(Piece.COLOR_BLACK));
-        pieces.set(7, createQueenRank(Piece.COLOR_BLACK));
+//        Piece.resetCount();
+//
+//        for (int i=0; i < 8; i++){
+//            pieces.add(new ArrayList<Piece>());
+//        }
+//        pieces.set(0, createQueenRank(Piece.Color.WHITE));
+//        pieces.set(1, createPawnRank(Piece.Color.WHITE));
+//        pieces.set(6, createPawnRank(Piece.Color.BLACK));
+//        pieces.set(7, createQueenRank(Piece.Color.BLACK));
     }
 
-    private ArrayList<Piece> createPawnRank(String colour) {
+    private ArrayList<Piece> createPawnRank(Piece.Color colour) {
         ArrayList<Piece> rank = new ArrayList<Piece>();
-        for (int i=0; i<8; i++) {
-            rank.add(Piece.create(colour, Piece.TYPE_PAWN));
-        }
+//        for (int i=0; i<8; i++) {
+//            rank.add(Piece.create(colour, Piece.TYPE_PAWN));
+//        }
         return rank;
     }
 
-    private ArrayList<Piece> createQueenRank(String colour) {
+    private ArrayList<Piece> createQueenRank(Piece.Color colour) {
         ArrayList<Piece> rank = new ArrayList<Piece>();
-        rank.add(Piece.create(colour, Piece.TYPE_ROOK));
-        rank.add(Piece.create(colour, Piece.TYPE_KNIGHT));
-        rank.add(Piece.create(colour, Piece.TYPE_BISHOP));
-        rank.add(Piece.create(colour, Piece.TYPE_QUEEN));
-        rank.add(Piece.create(colour, Piece.TYPE_KING));
-        rank.add(Piece.create(colour, Piece.TYPE_BISHOP));
-        rank.add(Piece.create(colour, Piece.TYPE_KNIGHT));
-        rank.add(Piece.create(colour, Piece.TYPE_ROOK));
+//        rank.add(Piece.create(colour, Piece.TYPE_ROOK));
+//        rank.add(Piece.create(colour, Piece.TYPE_KNIGHT));
+//        rank.add(Piece.create(colour, Piece.TYPE_BISHOP));
+//        rank.add(Piece.create(colour, Piece.TYPE_QUEEN));
+//        rank.add(Piece.create(colour, Piece.TYPE_KING));
+//        rank.add(Piece.create(colour, Piece.TYPE_BISHOP));
+//        rank.add(Piece.create(colour, Piece.TYPE_KNIGHT));
+//        rank.add(Piece.create(colour, Piece.TYPE_ROOK));
         return rank;
     }
 

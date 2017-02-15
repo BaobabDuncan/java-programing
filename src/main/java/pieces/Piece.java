@@ -4,8 +4,6 @@ package pieces;
  * Created by Administrator on 2017-02-01.
  */
 public class Piece {
-    public static final String COLOR_WHITE = "COLOR_WHITE";
-    public static final String COLOR_BLACK = "COLOR_BLACK";
 
     public final static String TYPE_PAWN = "p";
     public final static String TYPE_KNIGHT = "n";
@@ -14,24 +12,32 @@ public class Piece {
     public final static String TYPE_QUEEN = "q";
     public final static String TYPE_BISHOP = "b";
 
-    private String color;
-    private String type;
+
+
+
+    public enum Color {WHITE, BLACK}
+    enum Type {PAWN}
+    static char PAWN_REPRESENTATION = 'p';
+
+    private Color color;
+    private Type type;
 
     private static int whitePiecesInUse = 0;
     private static int blackPiecesInUse = 0;
 
-    private Piece(String color, String type) {
+
+
+    private Piece(Color color, Type type) {
         this.color = color;
         this.type = type;
     }
 
-    public static Piece create(String color, String type) {
-        if (color.equals(COLOR_WHITE)){
-            whitePiecesInUse++;
-        } else{
-            blackPiecesInUse++;
-        }
-        return new Piece(color, type);
+    public static Piece createWhitePawn() {
+        return new Piece(Color.WHITE, Type.PAWN);
+    }
+
+    public static Piece createBlackPawn() {
+        return new Piece(Color.BLACK, Type.PAWN);
     }
 
     public static void resetCount(){
@@ -51,26 +57,30 @@ public class Piece {
         return blackPiecesInUse;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public String toString() {
-        if (this.isWhite()){
-            return type.toUpperCase();
-        }
-        return type;
+    public char getRepresentation() {
+        return 'a';
     }
+
+//    public String toString() {
+//        if (this.isWhite()){
+//            return type.toUpperCase();
+//        }
+//        return type;
+//    }
 
     public boolean isBlack() {
-        return this.color.equals(COLOR_BLACK);
+        return this.color == Color.BLACK;
     }
 
     public boolean isWhite() {
-        return this.color.equals(COLOR_WHITE);
+        return this.color == Color.WHITE;
     }
 }
