@@ -1,6 +1,8 @@
 package chess;
 
 import junit.framework.TestCase;
+import pieces.Piece;
+
 import static util.StringUtil.NEWLINE;
 
 /**
@@ -20,24 +22,43 @@ public class BoardTest extends TestCase {
     }
 
     public void testRanks() {
-        assertEquals("PPPPPPPP", board.getRank(2));
-        assertEquals("pppppppp", board.getRank(7));
-        assertEquals("rnbqkbnr", board.getRank(8));
+        assertEquals("rnbqkbnr", board.getRank(1));
+        assertEquals("pppppppp", board.getRank(2));
+        assertEquals("PPPPPPPP", board.getRank(7));
+        assertEquals("RNBQKBNR", board.getRank(8));
     }
 
     public void testFullBoard() {
         assertEquals(
-                "rnbqkbnr" + NEWLINE +
-                "pppppppp" + NEWLINE +
-                "........" + NEWLINE +
-                "........" + NEWLINE +
-                "........" + NEWLINE +
-                "........" + NEWLINE +
+                "RNBQKBNR" + NEWLINE +
                 "PPPPPPPP" + NEWLINE +
-                "RNBQKBNR" + NEWLINE
+                "........" + NEWLINE +
+                "........" + NEWLINE +
+                "........" + NEWLINE +
+                "........" + NEWLINE +
+                "pppppppp" + NEWLINE +
+                "rnbqkbnr" + NEWLINE
                 ,
                 board.print()
         );
+    }
+
+    public void testCalculateNumberOfRank(){
+        assertEquals(8, board.getNumberOfPiece(Piece.Color.WHITE, Piece.Type.PAWN));
+        assertEquals(1, board.getNumberOfPiece(Piece.Color.WHITE, Piece.Type.KING));
+        assertEquals(2, board.getNumberOfPiece(Piece.Color.BLACK, Piece.Type.KNIGHT));
+    }
+
+    public void testGetRank(){
+        assertEquals('r', board.getPiece("a1"));
+        assertEquals('k', board.getPiece("e1"));
+        assertEquals('r', board.getPiece("h1"));
+        assertEquals('K', board.getPiece("e8"));
+    }
+
+    public void testAddPiece(){
+        board.reset();
+//        board.addPiece(Piece.createBlackPawn(), "a1");
     }
 
 }

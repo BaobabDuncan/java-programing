@@ -6,51 +6,29 @@ import junit.framework.TestCase;
  * Created by Administrator on 2017-02-01.
  */
 public class PieceTest extends TestCase {
+
     public void testCreate() {
-
         verifyCreation(Piece.createWhitePawn(), Piece.createBlackPawn(), Piece.Type.PAWN, Piece.PAWN_REPRESENTATION);
+        verifyCreation(Piece.createWhiteRook(), Piece.createBlackRook(), Piece.Type.ROOK, Piece.ROOK_REPRESENTATION);
+        verifyCreation(Piece.createWhiteKnight(), Piece.createBlackKnight(), Piece.Type.KNIGHT, Piece.KNIGHT_REPRESENTATION);
+        verifyCreation(Piece.createWhiteBishop(), Piece.createBlackBishop(), Piece.Type.BISHOP, Piece.BISHOP_REPRESENTATION);
+        verifyCreation(Piece.createWhiteQueen(), Piece.createBlackQueen(), Piece.Type.QUEEN, Piece.QUEEN_REPRESENTATION);
+        verifyCreation(Piece.createWhiteKing(), Piece.createBlackKing(), Piece.Type.KING, Piece.KING_REPRESENTATION);
+    }
 
-//        Piece pawn = Piece.create(
-//                Piece.Color.WHITE,
-//                Piece.TYPE_PAWN
-//        );
-//        assertEquals(Piece.Color.WHITE, pawn.getColor());
-//
-//        pawn = Piece.create(
-//                Piece.Color.BLACK,
-//                Piece.TYPE_PAWN
-//        );
-//        assertEquals(Piece.Color.BLACK, pawn.getColor());
+    public void testColor(){
+        assertTrue(Piece.createWhiteBishop().isWhite());
+        assertTrue(Piece.createBlackKing().isBlack());
     }
 
     private void verifyCreation(Piece whitePiece, Piece blackPiece, Piece.Type type, char representation){
         assertTrue(whitePiece.isWhite());
         assertEquals(type, whitePiece.getType());
-//        assertEquals(representation, whitePiece.getRepresentation());
+        assertEquals(representation, whitePiece.getRepresentation());
 
         assertTrue(blackPiece.isBlack());
         assertEquals(type, blackPiece.getType());
-//        assertEquals(Character.toUpperCase(representation), blackPiece.getRepresentation());
+        assertEquals(Character.toUpperCase(representation), blackPiece.getRepresentation());
     }
 
-    public void testPrintable() {
-//        Piece pawn = Piece.create(
-//                Piece.Color.WHITE,
-//                Piece.TYPE_PAWN
-//        );
-//        assertEquals("P", pawn.toString());
-//
-//        pawn = Piece.create(
-//                Piece.Color.BLACK,
-//                Piece.TYPE_PAWN
-//        );;
-//        assertEquals("p", pawn.toString());
-    }
-
-//    public void testIsWhite() {
-//        assertTrue(Piece.create(Piece.Color.WHITE, Piece.TYPE_PAWN).isWhite());
-//    }
-//    public void testIsBlack() {
-//        assertTrue(Piece.create(Piece.Color.BLACK, Piece.TYPE_PAWN).isBlack());
-//    }
 }
