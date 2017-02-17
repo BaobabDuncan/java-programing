@@ -5,72 +5,33 @@ import java.util.*;
 /**
  * Created by Administrator on 2017-02-01.
  */
-public class CourseSession implements Comparable<CourseSession> {
-    private Date startDate;
-    private String department;
-    private String number;
-    private List<Student> students = new ArrayList<Student>();
-    private int numberOfCredits;
+public class CourseSession extends Session {
 
-    private CourseSession(String department, String number, Date startDate) {
-        this.department = department;
-        this.number = number;
-        this.startDate = startDate;
-    }
+    private static int count;
 
     public static CourseSession create(String department, String number, Date startDate){
         return new CourseSession(department, number, startDate);
     }
 
-    public String getDepartment() {
-        return department;
+    protected CourseSession(String department, String number, Date startDate){
+        super(department, number, startDate);
+        CourseSession.incrementCount();
     }
 
-    public String getNumber() {
-        return number;
+    protected int getSessionLength() {
+        return 16;
     }
 
-    public int getNumberOfStudents() {
-        return students.size();
+    private static void incrementCount() {
+        ++count;
     }
 
-    public void enroll(Student student) {
-        student.addCredits(numberOfCredits);
-        students.add(student);
+    static void resetCount(){
+        count = 0;
     }
 
-    public Student get(int index) {
-        return students.get(index);
+    static int getCount(){
+        return count;
     }
 
-    public Date getEndDate() {
-        final int sessionLength = 16;
-        final int dayInWeek = 7;
-        final int dayFromFridayToMonday = 3;
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.setTime(startDate);
-        int numberOfDays = sessionLength * dayInWeek - dayFromFridayToMonday;
-        calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
-        return calendar.getTime();
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public List<Student> getAllStudents() {
-        return students;
-    }
-
-    public void setNumberOfCredits(int numberOfCredits) {
-        this.numberOfCredits = numberOfCredits;
-    }
-
-    public int compareTo(CourseSession that) {
-        int compare = this.getDepartment().compareTo(that.getDepartment());
-        if (compare == 0){
-            compare = this.getNumber().compareTo(that.getNumber());
-        }
-        return compare;
-    }
 }

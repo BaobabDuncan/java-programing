@@ -8,13 +8,25 @@ import java.util.ArrayList;
 public class Student {
     static final String IN_STATE = "CO";
     static final int CREDITS_REQUIRED_FOR_FULL_TIME = 12;
-    private GradingStrategy gradingStrategy = new RegularGradingStrategy();
+    private GradingStrategy gradingStrategy = new BasicGradingStrategy() {};
 
     public void setGradingStrategy(GradingStrategy gradingStrategy) {
         this.gradingStrategy = gradingStrategy;
     }
 
-    enum Grade {A, B, C, D, F}
+    public enum Grade {
+        A(4), B(3), C(2), D(1), F(0);
+        private int points;
+
+        Grade(int points) {
+            this.points = points;
+        }
+
+        int getPoints(){
+            return points;
+        }
+    }
+
     private ArrayList<Grade> grades = new ArrayList<Grade>();
     private String name;
     private int credits;
