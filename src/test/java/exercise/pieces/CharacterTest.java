@@ -1,4 +1,4 @@
-package pieces;
+package exercise.pieces;
 
 import junit.framework.TestCase;
 
