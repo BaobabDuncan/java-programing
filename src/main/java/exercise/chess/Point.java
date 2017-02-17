@@ -1,4 +1,4 @@
-package chess;
+package exercise.chess;
 
 /**
  * Created by sanguk on 16/02/2017.

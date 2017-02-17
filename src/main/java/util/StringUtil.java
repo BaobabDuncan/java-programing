@@ -8,4 +8,8 @@ public class StringUtil {
 
     private StringUtil() {
     }
+
+    public static String appendNewLine(String input) {
+        return input + NEWLINE;
+    }
 }

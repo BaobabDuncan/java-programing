@@ -1,4 +1,4 @@
-package chess;
+package exercise.pieces;
 
 import junit.framework.TestSuite;
 
@@ -8,7 +8,8 @@ import junit.framework.TestSuite;
 public class AllTests {
     public static TestSuite suite(){
         TestSuite suite = new TestSuite();
-        suite.addTestSuite(BoardTest.class);
+        suite.addTestSuite(PieceTest.class);
+        suite.addTestSuite(CharacterTest.class);
         return suite;
     }
 }
