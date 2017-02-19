@@ -12,11 +12,24 @@ public class StudentTest extends TestCase {
         final String firstStudentName = "Jane Doe";
         Student firstStudent = new Student(firstStudentName);
         assertEquals(firstStudentName, firstStudent.getName());
+        assertEquals("Jane", firstStudent.getFirstName());
+        assertEquals("Doe", firstStudent.getLastName());
+        assertEquals("", firstStudent.getMiddleName());
 
 
-        final String secondStudentName = "Joe Blow";
+        final String secondStudentName = "Blow";
         Student secondStudent = new Student(secondStudentName);
         assertEquals(secondStudentName, secondStudent.getName());
+        assertEquals("", secondStudent.getFirstName());
+        assertEquals("Blow", secondStudent.getLastName());
+        assertEquals("", secondStudent.getMiddleName());
+
+        final String thirdStudentName = "Raymond Douglas Davies";
+        Student thirdStudent = new Student(thirdStudentName);
+        assertEquals(thirdStudentName, thirdStudent.getName());
+        assertEquals("Raymond", thirdStudent.getFirstName());
+        assertEquals("Davies", thirdStudent.getLastName());
+        assertEquals("Douglas", thirdStudent.getMiddleName());
 
     }
 
@@ -85,5 +98,13 @@ public class StudentTest extends TestCase {
 
     private void assertGpa(Student student, double expectedGpa) {
         assertEquals(expectedGpa, student.getGpa(), GRADE_TOLERANCE);
+    }
+
+    public void testCharges(){
+        Student student = new Student("a");
+        student.addCharge(500);
+        student.addCharge(200);
+        student.addCharge(399);
+        assertEquals(1099, student.totalCharges());
     }
 }

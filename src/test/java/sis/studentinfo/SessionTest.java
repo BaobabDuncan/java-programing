@@ -2,7 +2,9 @@ package sis.studentinfo;
 
 import junit.framework.TestCase;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static sis.studentinfo.DateUtil.createDate;
 
@@ -57,5 +59,39 @@ abstract public class SessionTest extends TestCase {
         CourseSession sessionD = CourseSession.create("CMSC", "201", date);
         assertTrue(sessionC.compareTo(sessionD) < 0);
         assertTrue(sessionD.compareTo(sessionC) > 0);
+    }
+
+    public void testAverageGpaForPartTimeStudents(){
+        session.enroll(createFullTimeStudent());
+        Student partTimer1 = new Student("1");
+        partTimer1.addGrade(Student.Grade.A);
+        session.enroll(partTimer1);
+        assertEquals(4.0, session.averageGpaForPartTimeStudent(), 0.05);
+
+        session.enroll(createFullTimeStudent());
+        Student partTimer2 = new Student("2");
+        partTimer2.addGrade(Student.Grade.B);
+        session.enroll(partTimer2);
+        assertEquals(3.5, session.averageGpaForPartTimeStudent(), 0.05);
+    }
+
+    private Student createFullTimeStudent(){
+        Student student = new Student("a");
+        student.addCredits(Student.CREDITS_REQUIRED_FOR_FULL_TIME);
+        return student;
+    }
+
+    public void testIterate(){
+        enrollStudents(session);
+        List<Student> results = new ArrayList<Student>();
+        for (Student student: session)
+            results.add(student);
+        assertEquals(session.getAllStudents(), results);
+    }
+
+    private void enrollStudents(Session session){
+        session.enroll(new Student("1"));
+        session.enroll(new Student("2"));
+        session.enroll(new Student("3"));
     }
 }

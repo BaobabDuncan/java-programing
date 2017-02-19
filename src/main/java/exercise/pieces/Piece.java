@@ -1,6 +1,5 @@
 package exercise.pieces;
 
-import com.sun.jdi.InvalidTypeException;
 
 /**
  * Created by Administrator on 2017-02-01.

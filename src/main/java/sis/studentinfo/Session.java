@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by Administrator on 2017-02-17.
  */
-abstract public class Session implements Comparable<Session> {
+abstract public class Session implements Comparable<Session>, Iterable<Student> {
     private static int count;
     private String department;
     private String number;
@@ -70,5 +70,23 @@ abstract public class Session implements Comparable<Session> {
         int numberOfDays = getSessionLength() * dayInWeek - dayFromFridayToMonday;
         calendar.add(Calendar.DAY_OF_YEAR, numberOfDays);
         return calendar.getTime();
+    }
+
+    public double averageGpaForPartTimeStudent()
+    {
+        double total = 0.0;
+        int count = 0;
+        for (Student student: students) {
+            if (student.isFullTime())
+                continue;
+            count++;
+            total += student.getGpa();
+        }
+        if (count == 0) return 0.0;
+        return total / count;
+    }
+
+    public Iterator<Student> iterator(){
+        return students.iterator();
     }
 }
